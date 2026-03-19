@@ -1,0 +1,27 @@
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { ProductState } from "./products.reducer";
+import { sumProducts } from "src/app/utils/sum-products";
+
+export const selectProductsState = createFeatureSelector<ProductState>('products');
+
+export const selectProducts = createSelector(
+  selectProductsState,
+  (productsState) => productsState.products
+);
+
+export const selectProductsLoading = createSelector(
+  selectProductsState,
+  (productsState) => productsState.loading
+);
+
+export const selectProductsShowProductCode = createSelector(
+  selectProductsState,
+  (productsState) => productsState.showProductCode
+);
+
+export const selectProductsTotal = createSelector(
+  selectProducts,
+  sumProducts
+);
+
+
