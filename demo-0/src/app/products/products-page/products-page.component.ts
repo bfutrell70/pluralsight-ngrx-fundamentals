@@ -30,6 +30,8 @@ export class ProductsPageComponent {
   }
 
   getProducts() {
+    this.store.dispatch(ProductsPageActions.loadProducts());
+
     this.productsService.getAll().subscribe({
       next: (products) => {
         this.products = products;
