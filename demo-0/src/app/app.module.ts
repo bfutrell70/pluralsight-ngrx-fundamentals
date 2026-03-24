@@ -11,9 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { TablePageComponent } from './table-page/table-page.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, TablePageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
