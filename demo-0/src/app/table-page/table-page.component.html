@@ -1,0 +1,18 @@
+<h1>Table Experimentation Page</h1>
+
+<div class="table-container">
+  <table class="table-scroll">
+    <thead>
+      <tr>
+        <th *ngFor="let index of columns">Header {{ index }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rowIndex of rows">
+        <td *ngFor="let columnIndex of columns">
+          Data {{ columnIndex }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

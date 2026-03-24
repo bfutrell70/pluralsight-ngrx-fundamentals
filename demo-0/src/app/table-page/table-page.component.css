@@ -1,0 +1,66 @@
+.table-container {
+    width: 100%; /* Or a specific width */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    height: 75vh;
+}
+
+.table-scroll th,
+.table-scroll td {
+    /* Set a fixed width for consistent sticking */
+    /* setting width didn't seem to work, but min-width does */
+    /* width: 120px; */
+    min-width: 120px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff; /* Essential for hiding scrolling content behind */
+}
+
+/* Make header row sticky on vertical scroll */
+.table-scroll thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3; /* Ensure header is above body cells */
+}
+
+/* First Column (Header and Data) */
+.table-scroll tr td:nth-child(1),
+.table-scroll th:nth-child(1) {
+    position: sticky;
+    left: 0;
+    /* Body cells need a z-index higher than normal cells (default 0/auto) */
+    /* z-index: 2;  */
+}
+
+/* Second Column (Header and Data) */
+.table-scroll tr td:nth-child(2),
+.table-scroll th:nth-child(2) {
+  position: sticky;
+  left: 120px; /* Width of the first column */
+  /* z-index: 2; */
+}
+
+
+/* Third Column (Header and Data) */
+.table-scroll tr td:nth-child(3),
+.table-scroll th:nth-child(3) {
+  position: sticky;
+  left: 240px; /* Width of the first + second columns (120px + 120px) */
+  /* z-index: 2; */
+}
+
+.table-scroll tr td:nth-child(1),
+.table-scroll tr td:nth-child(2),
+.table-scroll tr td:nth-child(3) {
+  z-index: 2;
+}
+
+/* .table-scroll th:nth-child(1), */
+.table-scroll th:nth-child(2),
+.table-scroll th:nth-child(3) {
+  z-index: 4 !important;
+}
+
+/* Ensure top-left corner cell is highest */
+.table-scroll th:nth-child(1) {
+    z-index: 5 !important;
+}
