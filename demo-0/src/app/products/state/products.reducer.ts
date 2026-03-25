@@ -1,17 +1,19 @@
 import { createReducer, on } from "@ngrx/store";
-import { ProductsPageActions } from "./products.actions";
+import { ProductsAPIActions, ProductsPageActions } from "./products.actions";
 import { Product } from "../product.model";
 
 export interface ProductState {
   showProductCode: boolean,
   loading: boolean,
   products: Product[],
+  errorMessage: string
 }
 
 const initialState: ProductState = {
   showProductCode: true,
   loading: false,
   products: [],
+  errorMessage: ''
 }
 
 export const productsReducer = createReducer(
@@ -22,6 +24,20 @@ export const productsReducer = createReducer(
   })),
   on(ProductsPageActions.loadProducts, (state) => ({
     ...state,
-    loading: true
-  }))
+    loading: true,
+    products: [],
+
+  })),
+  // added this to get displaying the products list to work
+  on(ProductsAPIActions.productsLoadedSuccess, (state, { products }) => ({
+    ...state,
+    products: products,
+    errorMessage: '',
+    loading: false
+  })),
+  on(ProductsAPIActions.productsLoadedFail, (state, { message }) => ({
+    ...state,
+    errorMessage: message,
+    loading: false,
+  })),
 );
