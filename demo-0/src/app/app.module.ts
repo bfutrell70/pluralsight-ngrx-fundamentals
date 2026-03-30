@@ -14,9 +14,11 @@ import { environment } from 'src/environments/environment';
 import { TablePageComponent } from './table-page/table-page.component';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CircleTestComponent } from './circle-test/circle-test.component';
+import { CircleComponent } from './circle/circle.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, TablePageComponent],
+  declarations: [AppComponent, HomeComponent, TablePageComponent, CircleTestComponent, CircleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

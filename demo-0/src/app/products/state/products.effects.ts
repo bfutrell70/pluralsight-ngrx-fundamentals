@@ -1,17 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ProductsService } from "../products.service";
-import { catchError, concatMap, exhaustMap, map, mergeMap, of } from "rxjs";
+import { catchError, concatMap, exhaustMap, map, mergeMap, of, tap } from "rxjs";
 import { ProductsAPIActions, ProductsPageActions } from "./products.actions";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class ProductEffects {
 
   ngrxOnInitEffects() {
     return ProductsPageActions.loadProducts();
-  }
-  constructor(private actions$: Actions, private productsService: ProductsService) {
-
   }
 
   loadProducts$ = createEffect(() =>
@@ -73,4 +71,24 @@ export class ProductEffects {
       ))
     )
   )
+
+  // navigates to '/products' if the actions passed to it are of type
+  // productAddedSuccess, productDeletedSuccess, or productUpdatedSuccess
+  // 'dispatch: false' will not trigger more actions
+  redirectToProductsPage = createEffect(
+    () => this.actions$.pipe(
+      ofType(
+        ProductsAPIActions.productAddedSuccess,
+        ProductsAPIActions.productDeletedSuccess,
+        ProductsAPIActions.productUpdatedSuccess
+      ),
+      tap(() => this.router.navigate(['/products']))
+    ),
+    { dispatch: false }
+  )
+
+  // best practice is to have the constructor under the class variables
+  constructor(private router: Router, private actions$: Actions, private productsService: ProductsService) {
+
+  }
 }

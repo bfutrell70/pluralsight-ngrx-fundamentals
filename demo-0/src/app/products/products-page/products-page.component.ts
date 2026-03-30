@@ -16,9 +16,9 @@ export class ProductsPageComponent {
   errorMessage$ = this.store.select(selectProductsErrorMessage);
 
   constructor(private store: Store) {
-    this.store.subscribe((store) => {
-      console.log(store);
-    });
+    // this.store.subscribe((store) => {
+    //   console.log(store);
+    // });
   }
 
   toggleShowProductCode() {
