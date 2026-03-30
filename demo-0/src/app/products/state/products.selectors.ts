@@ -33,7 +33,8 @@ export const selectProductsErrorMessage = createSelector(
 export const { selectRouteParams } = getRouterSelectors();
 
 export const selectProductById = createSelector(
-    selectProducts,
-    selectRouteParams,
-    (products, { id }) => products.find((product) => product.id === parseInt(id))
-  );
+  selectRouteParams,  
+  selectProductsState,
+  ({ id }, { products }) => 
+    products.find((product) => product.id === parseInt(id))
+);

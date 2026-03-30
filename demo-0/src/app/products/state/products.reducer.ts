@@ -22,35 +22,39 @@ export const productsReducer = createReducer(
     ...state,
     showProductCode: !state.showProductCode,
   })),
+
   on(ProductsPageActions.loadProducts, (state) => ({
     ...state,
     loading: true,
+    errorMessage: '',
     products: [],
   })),
+
   // added this to get displaying the products list to work
   on(ProductsAPIActions.productsLoadedSuccess, (state, { products }) => ({
     ...state,
-    products: products,
-    errorMessage: '',
+    products,
     loading: false
   })),
+
   on(ProductsAPIActions.productsLoadedFail, (state, { message }) => ({
     ...state,
     errorMessage: message,
     loading: false,
   })),
 
-
   on(ProductsPageActions.addProduct, (state) => ({
     ...state,
     loading: true,
     errorMessage: '',
   })),
+
   on(ProductsAPIActions.productAddedSuccess, (state, {product}) => ({
     ...state,
     loading: false,
     products: [...state.products, product],
   })),
+  
   on(ProductsAPIActions.productAddedFail, (state, {message}) => ({
     ...state,
     loading: false,
