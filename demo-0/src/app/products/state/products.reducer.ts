@@ -91,3 +91,11 @@ export const productsReducer = createReducer(
     errorMessage: message,
   })),
 );
+
+const {
+  selectAll,
+  selectEntities
+} = adapter.getSelectors();
+
+export const selectProductEntities = selectEntities;
+export const selectProducts = selectAll;
