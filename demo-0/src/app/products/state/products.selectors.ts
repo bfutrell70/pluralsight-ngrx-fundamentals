@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { ProductState } from "./products.reducer";
+import { ProductsState } from "./products.reducer";
 import { sumProducts } from "src/app/utils/sum-products";
 import { getRouterSelectors } from "@ngrx/router-store";
 
-export const selectProductsState = createFeatureSelector<ProductState>('products');
+export const selectProductsState = createFeatureSelector<ProductsState>('products');
 
 export const selectProducts = createSelector(
   selectProductsState,
