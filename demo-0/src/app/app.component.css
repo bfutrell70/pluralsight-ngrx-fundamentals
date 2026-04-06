@@ -31,4 +31,5 @@ a:hover,
 .active-link {
   cursor: pointer;
   text-decoration: underline;
+  color: pink;
 }

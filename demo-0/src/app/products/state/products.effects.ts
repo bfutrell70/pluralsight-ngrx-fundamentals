@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { ProductsService } from "../products.service";
-import { catchError, concatMap, exhaustMap, map, mergeMap, of, tap } from "rxjs";
-import { ProductsAPIActions, ProductsPageActions } from "./products.actions";
 import { Router } from "@angular/router";
+import { catchError, concatMap, exhaustMap, map, mergeMap, of, tap } from "rxjs";
+
+import { ProductsAPIActions, ProductsPageActions } from "./products.actions";
+import { ProductsService } from "../products.service";
 
 @Injectable()
 export class ProductEffects {
@@ -65,7 +66,7 @@ export class ProductEffects {
         this.productsService.delete(id).pipe(
         map((newProduct) => ProductsAPIActions.productDeletedSuccess({ id })),
         catchError(
-          (error) => of(ProductsAPIActions.productDeletedFail({ message: error}))
+          (error) => of(ProductsAPIActions.productDeletedFail({ message: error }))
         )
       ))
     )
